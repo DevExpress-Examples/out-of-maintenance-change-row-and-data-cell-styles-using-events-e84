@@ -17,22 +17,22 @@ public partial class Grid_Styles_ChangeStyleOnHtmlPreparedEvents_ChangeStyleOnHt
 
     }
     protected void grid_CustomUnboundColumnData(object sender,
-                DevExpress.Web.ASPxGridView.ASPxGridViewColumnDataEventArgs e) {
+                DevExpress.Web.ASPxGridViewColumnDataEventArgs e) {
         if(e.Column.FieldName == "Total") {
             decimal price = (decimal)e.GetListSourceFieldValue("UnitPrice");
             int quantity = Convert.ToInt32(e.GetListSourceFieldValue("Quantity"));
             e.Value = price * quantity;
         }
     }
-    protected void grid_HtmlDataCellPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableDataCellEventArgs e) {
+    protected void grid_HtmlDataCellPrepared(object sender, DevExpress.Web.ASPxGridViewTableDataCellEventArgs e) {
         if(e.DataColumn == null || e.DataColumn.FieldName != "Total") return;
         decimal value = (decimal)e.GetValue("Total");
         if(value > 500)
             e.Cell.Font.Bold = true;
 
     }
-    protected void grid_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs e) {
-        if(e.RowType != DevExpress.Web.ASPxGridView.GridViewRowType.Data) return;
+    protected void grid_HtmlRowPrepared(object sender, DevExpress.Web.ASPxGridViewTableRowEventArgs e) {
+        if(e.RowType != DevExpress.Web.GridViewRowType.Data) return;
         decimal value = (decimal)e.GetValue("Total");
         if(value > 1000)
             e.Row.ForeColor = Color.Red;

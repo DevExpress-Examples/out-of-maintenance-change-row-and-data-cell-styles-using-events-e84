@@ -16,14 +16,14 @@ Partial Public Class Grid_Styles_ChangeStyleOnHtmlPreparedEvents_ChangeStyleOnHt
 	Protected Sub Page_Load(ByVal sender As Object, ByVal e As EventArgs)
 
 	End Sub
-	Protected Sub grid_CustomUnboundColumnData(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridView.ASPxGridViewColumnDataEventArgs)
+	Protected Sub grid_CustomUnboundColumnData(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewColumnDataEventArgs)
 		If e.Column.FieldName = "Total" Then
 			Dim price As Decimal = CDec(e.GetListSourceFieldValue("UnitPrice"))
 			Dim quantity As Integer = Convert.ToInt32(e.GetListSourceFieldValue("Quantity"))
 			e.Value = price * quantity
 		End If
 	End Sub
-	Protected Sub grid_HtmlDataCellPrepared(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridView.ASPxGridViewTableDataCellEventArgs)
+	Protected Sub grid_HtmlDataCellPrepared(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewTableDataCellEventArgs)
 		If e.DataColumn Is Nothing OrElse e.DataColumn.FieldName <> "Total" Then
 		Return
 		End If
@@ -33,8 +33,8 @@ Partial Public Class Grid_Styles_ChangeStyleOnHtmlPreparedEvents_ChangeStyleOnHt
 		End If
 
 	End Sub
-	Protected Sub grid_HtmlRowPrepared(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridView.ASPxGridViewTableRowEventArgs)
-		If e.RowType <> DevExpress.Web.ASPxGridView.GridViewRowType.Data Then
+	Protected Sub grid_HtmlRowPrepared(ByVal sender As Object, ByVal e As DevExpress.Web.ASPxGridViewTableRowEventArgs)
+		If e.RowType <> DevExpress.Web.GridViewRowType.Data Then
 		Return
 		End If
 		Dim value As Decimal = CDec(e.GetValue("Total"))
